@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>KrakBike</title>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/animate.css">
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="shortcut icon" href="http://www.faviconer.com/uploads/100/689/favicon.png" />
+  </head>
+  <body>
+
+ <div class="top">
+
+  <div class="start">
+    <label for="name">Poczatek:</label>
+    <input id="start" type="name">
+  </div>
+  <div class="end">
+    <label for="name">Koniec:</label>
+    <input id="end" type="name">
+  </div>
+
+  <div class="type">
+    <div class="switch switch-yellow">
+      <input type="radio" class="switch-input" name="view" value="fast" id="fast" checked>
+      <label for="fast" class="switch-label switch-label-off">Fast</label>
+      <input type="radio" class="switch-input" name="view" value="eco" id="eco">
+      <label for="eco" class="switch-label switch-label-on">Health</label>
+      <span class="switch-selection"></span>
+    </div>
+   </div>
+
+
+   <div class="sendButton">
+    <input id="submit" type="submit" value="Submit" onclick="startQuery()">
+  </div>
+</div>
+
+
+<div id="data">
+  <div id="map-canvas"></div>
+</div>
+  <script src="https://maps.googleapis.com/maps/api/js?v=AIzaSyDxbIA8Ky93xfJ6j2DpZszJUeFwxbjG0_k"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="/js/setMarkers.js"></script>
+  <script src="/js/calcRoute.js"></script>
+  <script src="/js/createMarker.js"></script>
+  <script src="/js/loadXML.js"></script>
+  <script src="/js/getStations.js"></script>
+  <script src="/js/findNearest.js"></script>
+  <script src="/js/calculate.js"></script>
+  <script src="/js/loadIcon.js"></script>
+  <script type="text/javascript">
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
+  var map;
+  var xmlURL = "https://nextbike.net/maps/nextbike-live.xml";
+  var stationIconURL = "http://maps.google.com/mapfiles/kml/shapes/cycling.png";
+  var startEndIconURL = "http://maps.google.com/mapfiles/kml/shapes/ranger_station.png";
+  var markers = [];
+  var stationIcon;
+  var startEndIcon;
+  function initialize() {
+    directionsDisplay = new google.maps.DirectionsRenderer();
+    var krakow = new google.maps.LatLng(50.058669, 19.944448);
+    var mapOptions = {
+      zoom:12,
+      center: krakow
+    };
+    stationIcon = loadIcon(stationIconURL);
+    startEndIcon = loadIcon(startEndIconURL);
+
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay.setOptions( { suppressMarkers: true } );
+    loadStations(xmlURL);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  </body>
+</html>
