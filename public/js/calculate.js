@@ -12,13 +12,12 @@ function calculate(start,end){
 
   createMarker(start);
 
-
   if (stationNearStart.waypoint.location == stationNearEnd.waypoint.location){
     createMarker(end);
     calcRoute(start,end);
   }else{
     createStationMarkers(stationsData);
     createMarker(end);
-    calcRoute(start,end, waypoints);
+    calcRoute(start, end, waypoints);
   }
 }

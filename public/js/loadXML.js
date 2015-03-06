@@ -1,13 +1,12 @@
 function loadXML(filename){
-  if (window.XMLHttpRequest)
-    {
+  if (window.XMLHttpRequest){
     xhttp=new XMLHttpRequest();
-    }
-  else // code for IE5 and IE6
-    {
+  } else {  // code for IE5 and IE6
     xhttp=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-  xhttp.open("GET",filename,false);
+  }
+
+  xhttp.open("GET", filename, false);
   xhttp.send();
+
   return xhttp.responseXML;
 }

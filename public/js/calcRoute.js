@@ -8,8 +8,10 @@ function calcRoute(start,end,waypoints) {
       travelMode: google.maps.TravelMode.BICYCLING
   };
   if (waypoints == undefined ) request.travelMode = google.maps.TravelMode.TRANSIT;
+
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+
       directionsDisplay.setDirections(response);
       var times = [];
       var distances = [];
@@ -23,8 +25,10 @@ function calcRoute(start,end,waypoints) {
         markers[i].duration = response.routes[0].legs[i].duration.text;
         markers[i].distance = response.routes[0].legs[i].distance.text;
       }
-      if (response.legs)
+
+      if (response.legs){
         additionalData =  {"times":times, "distances":distances };
+      }
     }
   });
 
