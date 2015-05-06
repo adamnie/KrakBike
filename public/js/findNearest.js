@@ -26,7 +26,7 @@ function findNearest(point,stations){
   for (var i in stations){
     var current;
     if (distance(point, stations[i]) < minDist){
-      minDist = distance(point, stations[ind]);
+      minDist = distance(point, stations[i]);
       current = stations[i];
     }
   }
