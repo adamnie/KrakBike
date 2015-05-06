@@ -1,26 +1,23 @@
-function Weather(temperature, wind, rain, description){
+function Weather(protoWeather){
   this.nextWeather = null;
-  this.temperature = temperature;
-  this.wind = 0.0;
+  this.temperature = protoWeather.main.temp;
+  this.wind = protoWeather.wind.speed;
   this.icon = "";
-  this.description = "";
-  this.rain = 0.0;
-};
-
-Weather.prototype.setNextWeather = function(temperature, wind, rain, description){
-  this.nextWeather = new Weather(temperature, wind, rain, description);
-  this.nextWeather.setIcon();
+  this.description = protoWeather.weather[0].description;
+  this.rain = protoWeather.rain["3h"];
 };
 
 Weather.prototype.setIcon = function(){
-  // tutaj wprowadzic progi
-  // slonce
-  // polslonce
-  // chmury
-  // deszcz
-  // burza
+  if(this.rain == 0 && this.description.indexOf("cloud") == -1){
+    this.icon = "/static/sun.png"
+  }else if(this.rain == 0){
+    this.icon = "/static/cloud.png"
+  }else{
+    this.icon = "/static/rain.png"
+  }
 };
 
 Weather.prototype.getIcon = function(){
+  this.setIcon();
   return this.icon;
 };

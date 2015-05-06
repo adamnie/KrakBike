@@ -2,31 +2,15 @@
 function WeatherAPI(){};
 
 WeatherAPI.prototype.getWeather = function(data, hourOffset){
+
+		if(typeof data == 'undefined')return;
 		hourOffset = (typeof hourOffset !== 'undefined') ? hourOffset : 0;
 		var weatherByHour = data.list;
-		var currentTime = new Date().getHours();
-		var weatherIndex = Math.floor(currentTime / 3.0) - 4;
-		var currentWeather = weatherByHour[weatherIndex + hourOffset];
+		var currentWeather = weatherByHour[hourOffset+1];
+		var weather =  new Weather(currentWeather);
 
-		return currentWeather;
+		return weather;
 };
-
-WeatherAPI.prototype.showWeather = function(weatherData, container){
-		var $temperature = $("<p></p>");
-		var $wind = $("<p></p>");
-		var $rain = $("<p></p>");
-		var $description = $("<p></p>");
-
-		$temperature.html("temperature "+weatherData.main.temp);
-		$wind.html("wind "+weatherData.wind.speed);
-		$rain.html("rain "+weatherData.rain["3h"]);
-		$description.html(weatherData.weather[0].description);
-
-		container.append($temperature);
-		container.append($wind);
-		container.append($rain);
-		container.append($description);
-	};
 
 WeatherAPI.prototype.translateDescription = function(){};
 
@@ -37,17 +21,25 @@ WeatherAPI.prototype.getURL = function(){
 	var apiKey = "";
 	var request = url + mode + units + apiKey;
 
-	$.get(request, function(data, status){
-		console.log(data);
-		var currentWeather = getWeather(data);
-		var weatherInThreeHours = getWeather(data,1);
-
-		var $now = $("#now");
-		var $inThreeHours = $("#inThreeHours");
-
-		showWeather(currentWeather, $now);
-		showWeather(weatherInThreeHours, $inThreeHours);
-	});
+	return request;
 };
 
-Weather.protype.get
+WeatherAPI.prototype.showWeather = function(){
+		var request = this.getURL();
+		var that = this;
+		$.get(request, function(data, status){
+			that.currentWeather = that.getWeather(data,0);
+			that.nextWeather = that.getWeather(data,1);
+
+			var $now = $("#now");
+			var $inThreeHours = $("#inThreeHours");
+
+			//that.showWeather(that.currentWeather, $now);
+			//that.showWeather(that.nextWeather, $inThreeHours);
+
+			var iconPath = that.currentWeather.getIcon();
+			console.log(iconPath);
+			console.log(that.currentWeather)
+			$("#forecast").attr("src", iconPath);
+		});
+};

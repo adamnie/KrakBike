@@ -13,6 +13,8 @@
     z-index: 2;
   position: relative;
   margin: 15px auto;
+  margin-left: 40px;
+  margin-right:40px;
   height: 30px;
   width: 143px;
   background: rgba(200, 200, 200, 0.25);
@@ -26,28 +28,28 @@
   margin-right: 16px;
   margin-top:-4px;
   position: relative;
-  z-index: 2; 
+  z-index: 2;
   float: left;
   line-height: 0px;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.35);
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
   cursor: pointer;
-  
+
 }
 .switch-label:active {
   font-weight: bold;
-  
+
 }
 
 .switch-label-off {
   padding-left: 2px;
-  
+
 }
 
 .switch-label-on {
   padding-right: 2px;
-  
+
 }
 
 /*

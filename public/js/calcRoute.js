@@ -1,11 +1,18 @@
 var additionalData;
 function calcRoute(start,end,waypoints) {
+  var travelMode;
+  if($("#eco").is(":checked")){
+    travelMode = google.maps.TravelMode.BICYCLING;
+  }else {
+    travelMode = google.maps.TravelMode.DRIVING;
+  }
+
   var request = {
       origin: start,
       destination: end,
       unitSystem: google.maps.UnitSystem.METRIC,
       waypoints: waypoints,
-      travelMode: google.maps.TravelMode.BICYCLING
+      travelMode: travelMode
   };
   if (waypoints == undefined ) request.travelMode = google.maps.TravelMode.TRANSIT;
 

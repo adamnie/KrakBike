@@ -44,12 +44,17 @@ function startQuery(){
   clearMarkers();
   var geocoder = new google.maps.Geocoder();
   var address = document.getElementById("start").value;
+  if(address.indexOf(",") == -1) address += ", Kraków";
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK)
       {
 
           var startLat = results[0].geometry.location.lat();
           var startLng = results[0].geometry.location.lng();
+          if(addressNotInCracow(startLat,startLng)){
+            apologize();
+            return;
+          }
           var start = new google.maps.LatLng(startLat,startLng);
           stop(start);
       }
@@ -59,13 +64,22 @@ function startQuery(){
 function stop(start){
   var geocoder = new google.maps.Geocoder();
   var address = document.getElementById("end").value;
+  if(address.indexOf(",") == -1) address += ", Kraków";
     geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK)
       {
           var stopLat = results[0].geometry.location.lat();
           var stopLng = results[0].geometry.location.lng();
+          if(addressNotInCracow(stopLat,stopLng)){
+            apologize();
+            return;
+          }
           var stop = new google.maps.LatLng(stopLat,stopLng);
           calculate(start,stop);
       }
   });
+}
+
+function apologize(){
+  alert("Przepraszamy, ale aplikacja obsługuje jedynie miasto Kraków");
 }
