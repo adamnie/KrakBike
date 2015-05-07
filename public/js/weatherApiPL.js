@@ -34,9 +34,9 @@ WeatherAPI.prototype.displayWeather = function(weather, $container){
 	var $wind = $('<li class="item"></li>');
 	var $descr = $('<li class="item"></li>');
 
-	$temp.text("temperatura: "+weather.temperature);
-	$rain.text("deszcz: "+weather.rain);
-	$wind.text("wiatr: "+weather.wind);
+	$temp.text("temperatura: "+weather.temperature+'℃');
+	$rain.text("deszcz: "+weather.rain+" mm");
+	$wind.text("wiatr do: "+weather.wind+"m/s");
 	$descr.text("opis: "+weather.description);
 
 	$container.append($temp);

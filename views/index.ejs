@@ -107,11 +107,11 @@
   function fillSmogData(){
 
     var smogData = {
-      "so2":10,
-      "no2":10,
-      "co":10,
-      "pm10":10,
-      "pm25":10
+      "so2":6.4,
+      "no2":19,
+      "co":378,
+      "pm10":17,
+      "pm25":13
     }
 
     var $container = $("#smog_details");
@@ -124,11 +124,11 @@
   	var $pm10 = $('<li class="item"></li>');
     var $pm25 = $('<li class="item"></li>');
 
-  	$so2.text("Dwutlenek siarki: "+smogData["so2"]);
-  	$no2.text("Dwutlenek azotu: "+smogData["no2"]);
-  	$co.text("Tlenek węgla: "+smogData["co"]);
-  	$pm10.text("Pył zawieszony PM10: "+smogData["pm10"]);
-    $pm25.text("Pył zawieszony PM2.5: "+smogData["pm25"]);
+  	$so2.text("Dwutlenek siarki: "+smogData["so2"]+"µg/m3");
+  	$no2.text("Dwutlenek azotu: "+smogData["no2"]+"µg/m3");
+  	$co.text("Tlenek węgla: "+smogData["co"]+"µg/m3");
+  	$pm10.text("Pył zawieszony PM10: "+smogData["pm10"]+"µg/m3");
+    $pm25.text("Pył zawieszony PM2.5: "+smogData["pm25"]+"µg/m3");
 
   	$container.append($so2);
   	$container.append($no2);
