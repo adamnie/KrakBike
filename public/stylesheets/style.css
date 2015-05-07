@@ -101,4 +101,48 @@ input[type=radio] {
 #forecast{
   margin-left: -120px;
   float:left;
+  z-index:101;
+}
+
+#smog_img{
+  float:left;
+  margin-left:-5px;
+  margin-top: -5px;
+}
+
+#now{
+  z-index:100;
+  width: 200px;
+  -webkit-box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+-moz-box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+background-color:white;
+float:right;
+position: absolute;
+margin-left:850px;
+margin-top:60px;
+padding:5px;
+}
+
+#smog_details{
+  z-index:100;
+  width: 250px;
+  -webkit-box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+-moz-box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+box-shadow: 10px 10px 14px -5px rgba(74,71,74,1);
+background-color:white;
+float:right;
+position: absolute;
+margin-left:1000px;
+margin-top:50px;
+padding:5px;
+}
+
+.item{
+  text-align:center;
+  list-style-type: none;
+}
+
+.details{
+  list-style-type: none;
 }

@@ -24,6 +24,27 @@ WeatherAPI.prototype.getURL = function(){
 	return request;
 };
 
+WeatherAPI.prototype.displayWeather = function(weather, $container){
+
+	$container.empty();
+
+	var $ul = $('<ul class="details"></ul>');
+	var $temp = $('<li class="item"></li>');
+	var $rain = $('<li class="item"></li>');
+	var $wind = $('<li class="item"></li>');
+	var $descr = $('<li class="item"></li>');
+
+	$temp.text("temperatura: "+weather.temperature);
+	$rain.text("deszcz: "+weather.rain);
+	$wind.text("wiatr: "+weather.wind);
+	$descr.text("opis: "+weather.description);
+
+	$container.append($temp);
+	$container.append($rain);
+	$container.append($wind);
+	$container.append($descr);
+};
+
 WeatherAPI.prototype.showWeather = function(){
 		var request = this.getURL();
 		var that = this;
@@ -32,14 +53,11 @@ WeatherAPI.prototype.showWeather = function(){
 			that.nextWeather = that.getWeather(data,1);
 
 			var $now = $("#now");
-			var $inThreeHours = $("#inThreeHours");
 
-			//that.showWeather(that.currentWeather, $now);
-			//that.showWeather(that.nextWeather, $inThreeHours);
+			that.displayWeather(that.currentWeather, $now);
+			// that.displayWeather(that.nextWeather, $inThreeHours);
 
 			var iconPath = that.currentWeather.getIcon();
-			console.log(iconPath);
-			console.log(that.currentWeather)
 			$("#forecast").attr("src", iconPath);
 		});
 };
